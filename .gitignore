@@ -47,8 +47,18 @@ coverage.xml
 # Django stuff:
 *.log
 
+# Debug log
+debug.log.*
+
 # Sphinx documentation
 docs/_build/
 
 # PyBuilder
 target/
+
+# dev testing build
+dev/
+
+# READMEs generated from README.md
+doc/
+
