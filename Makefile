@@ -8,23 +8,33 @@ PANDOC := pandoc
 RST2HTML := rst2html-2.7.py
 PYTHON := python
 CHMOD := chmod -R
+TWINE := twine
 
-.PHONY: dev
+.PHONY: dev sdist wheel
+
+wheel:
+	$(PYTHON) setup.py bdist_wheel 
 
 sdist:
 	# make inaccessible files readable so they can be packaged
 	$(CHMOD) u+r tests/inaccessible-files
 	$(PYTHON) setup.py sdist
 
-doc/README.rst: README.md
+twine: sdist wheel
+	$(TWINE) upload dist/*
+
+docs/README.rst: README.md
 	$(PANDOC) -f markdown -t rst -o $@ $<
 
-doc/README.html: doc/README.rst
+docs/README.html: doc/README.rst
 	$(RST2HTML) $< $@
 
 rst: doc/README.rst
 
 html: doc/README.html
+
+register: rst
+	$(PYTHON) setup.py register
 
 pep8:
 	-@ $(PEP) $(src)

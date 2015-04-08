@@ -56,7 +56,7 @@ desc = 'pyf: programmers find'
 
 here = os.path.abspath(os.path.dirname(__file__))
 try:
-    long_description = open(os.path.join(here, 'doc/README.rst')).read()
+    long_description = open(os.path.join(here, 'docs/README.rst')).read()
 except:
     long_description = desc
 
