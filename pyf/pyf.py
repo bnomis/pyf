@@ -221,6 +221,7 @@ def pyf_file(options, path):
         lines = fp.readlines()
         fp.close()
 
+    debug('pyf_file: searching in %s' % path)
     try:
         lnum = 0
         matched = False
