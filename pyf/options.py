@@ -4,6 +4,7 @@ from __future__ import print_function
 import argparse
 import os
 import re
+import signal
 import subprocess
 import sys
 
@@ -43,9 +44,9 @@ def open_pager(options):
         if 'LESS' not in os.environ:
             args.append('-FRSX')
     try:
-        options.pager = subprocess.Popen(args, stdin=subprocess.PIPE)
+        options.pager = subprocess.Popen(args, stdin=subprocess.PIPE, preexec_fn=lambda: signal.signal(signal.SIGPIPE, signal.SIG_DFL))
     except Exception as e:
-        writerr(options, 'Error opening pager process: %s' % (' '.join(args)), exception=e)
+        writerr(options, 'Error opening pager process: %s: %s' % (' '.join(args), e), exception=e)
     else:
         options.stdout = options.pager.stdin
 
