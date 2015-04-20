@@ -24,14 +24,16 @@ twine: sdist wheel
 	$(TWINE) upload dist/*
 
 docs/README.rst: README.md
+	-@ mkdir docs
 	$(PANDOC) -f markdown -t rst -o $@ $<
 
-docs/README.html: doc/README.rst
+docs/README.html: docs/README.rst
+	-@ mkdir docs
 	$(RST2HTML) $< $@
 
-rst: doc/README.rst
+rst: docs/README.rst
 
-html: doc/README.html
+html: docs/README.html
 
 register: rst
 	$(PYTHON) setup.py register
