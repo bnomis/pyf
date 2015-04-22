@@ -1,4 +1,4 @@
-# pyf: Programmers find
+# pyf: fast find and grep for programmers
 
 It's pronounced "pif".
 
