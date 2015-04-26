@@ -67,6 +67,14 @@ pyf post html | pyf -v -f - csrf_token
 
 Above finds all files whose name ends in 'html' and contain 'post' but do not contain 'csrf_token'.
 
+### Finding Files By Name (like find)
+
+```shell
+pyf -d /opt/local -n openvpn
+```
+
+Above will find files and directories named "openvpn" below the `/opt/local` directory.
+
 ### Running A Command On A Matched File
 
 ```shell
